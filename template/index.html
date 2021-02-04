@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{{ name }}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div style="text-align: center">
+      <h1>{{ name }}</h1> by {{ author }}
+      <i>{{ description }}</i>
+
+      <div id="app">
+        <!-- 
+          NOTE: The Vue CLI will strip away any template interpolation a.k.a. the handle bars/double curly braces, so we bind with `v-html`
+        -->
+        <span v-html="message"></span>
+      </div>
+    </div>
+
+
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          message: 'Hello {{ author }} !'
+        },
+        created: function () {
+          console.log('{{ extra }}')
+        }
+      })
+    </script>
+  </body>
+</html>

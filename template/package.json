@@ -1,15 +1,82 @@
 {
-    "name": "{{name}}",
-    "version": "1.0.0",
-    "description": "{{description}}",
-    "main": "index.js",
-    "author": "{{author}}",
-    "license": "MIT",
-    "private": false,
-    "scripts": {
-      "start": "http-server ./ -p 3000"
-    },
-    "dependencies": {
-      "http-server": "^0.11.1"
+  "name": "{{name}}",
+  "version": "0.0.1",
+  "description": "{{description}}",
+  "private": true,
+  "scripts": {
+    "preinstall": "git clone https://github.com/duanerlong/project-packages.git packages",
+    "dev": "nuxt",
+    "dev:docker": "DEV_DOCKER=docker nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "export": "nuxt export",
+    "serve": "nuxt serve",
+    "lint:js": "eslint --ext .js,.vue --ignore-path .gitignore .",
+    "lint:style": "stylelint **/*.{vue,css} --ignore-path .gitignore",
+    "lint": "npm run lint:js && npm run lint:style",
+    "test": "jest",
+    "serve:build": "docker-compose up -d --build",
+    "serve:down": "docker-compose down",
+    "start:docker": "docker-compose start",
+    "stop:docker": "docker-compose stop",
+    "build:docker": "docker image build . -t activestreamhc/activestreamhc-nn && docker push activestreamhc/activestreamhc-nn",
+    "build:docker:L": "docker image build . -t activestreamhc/activestreamhc-nn:LIXILTUKUBA && docker push activestreamhc/activestreamhc-nn:LIXILTUKUBA",
+    "build:docker:K": "docker image build . -t activestreamhc/activestreamhc-nn:KEBANAGOYA && docker push activestreamhc/activestreamhc-nn:KEBANAGOYA",
+    "build:docker:A": "docker image build . -t activestreamhc/activestreamhc-nn:AQUASPORTS && docker push activestreamhc/activestreamhc-nn:AQUASPORTS"
+  },
+  "lint-staged": {
+    "*.{js,vue}": "eslint",
+    "*.{css,vue}": "stylelint"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
     }
+  },
+  "dependencies": {
+    "@nuxtjs/axios": "^5.11.0",
+    "@nuxtjs/pwa": "^3.0.0-beta.20",
+    "axios": "^0.19.2",
+    "body-parser": "^1.19.0",
+    "chart.js": "^2.9.3",
+    "express-mysql-session": "^2.1.4",
+    "express-session": "^1.17.1",
+    "form-data": "^3.0.0",
+    "japanese-holidays": "^1.0.9",
+    "json2csv": "^5.0.1",
+    "lodash": "^4.17.15",
+    "moment": "^2.27.0",
+    "moment-timezone": "^0.5.31",
+    "multer": "^1.4.2",
+    "mysql": "^2.18.1",
+    "nuxt": "^2.13.0",
+    "qrcode": "^1.4.4",
+    "socket.io": "^2.3.0",
+    "socket.io-client": "^2.3.0",
+    "uuid": "^8.2.0",
+    "vue-chartjs": "^3.5.1"
+  },
+  "devDependencies": {
+    "@fortawesome/fontawesome-free": "^5.13.1",
+    "@nuxtjs/eslint-config": "^3.0.0",
+    "@nuxtjs/eslint-module": "^2.0.0",
+    "@nuxtjs/stylelint-module": "^4.0.0",
+    "@nuxtjs/vuetify": "^1.11.2",
+    "@vue/test-utils": "^1.0.3",
+    "babel-core": "7.0.0-bridge.0",
+    "babel-eslint": "^10.1.0",
+    "babel-jest": "^26.0.1",
+    "eslint": "^7.2.0",
+    "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-nuxt": "^1.0.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "husky": "^4.2.5",
+    "jest": "^26.0.1",
+    "lint-staged": "^10.2.11",
+    "prettier": "^2.0.5",
+    "stylelint": "^13.6.1",
+    "stylelint-config-prettier": "^8.0.1",
+    "stylelint-config-standard": "^20.0.0",
+    "vue-jest": "^3.0.4"
   }
+}

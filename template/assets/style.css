@@ -1,0 +1,31 @@
+.fixed-top {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+
+body {
+  background-color: #EEE;
+}
+
+.clock-hour {
+  width: 10px !important;
+  background-color: #fd8015 !important;
+}
+.clock-minute {
+  width: 6px !important;
+  background-color: #007bff !important;
+}
+.clock-second {
+  width: 2px !important;
+  background-color: white !important;
+}
+
+.bg-tempok {
+  background-color: #00ff3291;
+}
+.bg-temperr {
+  background-color: #ff00009e;
+}

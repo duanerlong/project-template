@@ -1,0 +1,9 @@
+DROP TABLE IF EXISTS `operation_log`;
+CREATE TABLE IF NOT EXISTS `operation_log` (
+  `uid` VARCHAR(255) NOT NULL, 
+  `type` VARCHAR(255) NOT NULL, 
+  `content` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP, 
+  `updated_at` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`uid`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;

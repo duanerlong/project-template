@@ -1,0 +1,15 @@
+// Ref: https://github.com/nuxt-community/vuetify-module#customvariables
+//
+// The variables you want to modify
+// $font-size-root: 20px;
+
+$body-font-family: '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto',
+  'Helvetica Neue', 'Arial', 'Noto Sans', 'sans-serif', 'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+
+$material-dark: (
+  'background': transparent,
+);
+$material-light: (
+  'background': transparent,
+);

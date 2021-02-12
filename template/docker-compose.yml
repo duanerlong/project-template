@@ -1,0 +1,65 @@
+version: '3'
+
+services:
+  # docker環境開発用（エディターで編集したファイルをリアルタイム反映する）
+  app:
+    image: node:lts-alpine3.9
+    volumes:
+      - .:/home/app
+    tty: true
+    depends_on:
+      - mysql
+    ports:
+      - '3000:3000'
+  app1:
+    image: node:lts-alpine3.9
+    volumes:
+      - .:/home/app
+    tty: true
+    depends_on:
+      - mysql
+    ports:
+      - '3001:3000'
+
+  # nginx
+  nginx:
+    image: nginx
+    container_name: 'nginx'
+    restart: always
+    depends_on:
+      - app
+    ports:
+      - '80:80'
+    volumes:
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d:ro
+
+  # MySQL
+  mysql:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: activestreamhc
+      MYSQL_DATABASE: activestreamhc
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - mysql-db:/var/lib/mysql
+      - ./docker/mysql/conf.d:/etc/mysql/conf.d/:ro
+      - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+  # phpMyAdmin
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_HOSTS=mysql
+    depends_on:
+      - mysql
+    ports:
+      - 8080:80
+
+volumes:
+  mysql-db:
+    driver: local
